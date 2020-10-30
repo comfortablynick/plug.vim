@@ -47,10 +47,10 @@ Reload `.vimrc`/`init.vim` and `:PlugInstall` to install plugins.
 - `PlugDisable`: Move a plugin to `packager/opt`. (`packager#update` would move plugin back to `packager/start`, unless the plugin is explicitly optional. Useful for disabling a plugin temporarily)
 
 ## Credit
-K. Takata (the author of [minpac][1])
-Junegunn Choi (the author of [vim-plug][2])
-Kristijan Husak (the author of [vim-packager][3])
-Ben Yip (the author of [plugpac][4])
+K. Takata (the author of [minpac][1])  
+Junegunn Choi (the author of [vim-plug][2])  
+Kristijan Husak (the author of [vim-packager][3])  
+Ben Yip (the author of [plugpac][4])  
 
 [1]: https://github.com/k-takata/minpac
 [2]: https://github.com/junegunn/vim-plug
