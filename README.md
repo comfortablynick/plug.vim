@@ -1,58 +1,60 @@
-# plugpac
+# plug
 ## Overview
-Plugpac is a thin wrapper over [minpac][1], leveraging the power of Vim8(and Neovim) native package manager and jobs feature. It's even faster than [vim-plug][2].  
-
-In my case, it takes 18ms to start up with 53 out 87 plugins loaded(the rest will be load on demand). While vim-plug takes 35ms.
+Plug.vim is a thin wrapper over [vim-packager][1], leveraging the power of Vim8(and Neovim) native package manager and jobs feature.
+It is forked from [plugpac.vim][4], which is designed to work with [minpac][1].
 
 ## Installation
-Linux & Vim8:
+Linux & Neovim/Vim8 (for example):
 ```
-git clone https://github.com/k-takata/minpac.git \
-    ~/.vim/pack/minpac/opt/minpac
-curl -fLo ~/.vim/autoload/plugpac.vim --create-dirs \
-    https://raw.githubusercontent.com/bennyyip/plugpac.vim/master/plugpac.vim
+git clone https://github.com/comfortablynick/plug.vim \
+    ~/.local/share/nvim/site/pack/packager/opt
+curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/comfortablynick/plug.vim/master/plug.vim
 ```
 
-## Sample vimrc
+## Sample init.vim
 ```vim
-call plugpac#begin()
+call plug#begin()
 
-" minpac
-Pack 'k-takata/minpac', {'type': 'opt'}
+" vim-packager
+Plug 'kristijanhusak/vim-packager', {'type': 'opt'}
 
-Pack 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-easy-align'
 
 " On-demand loading
-Pack 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Pack 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'scrooloose/nerdtree',         {'on':  'NERDTreeToggle'}
+Plug 'tpope/vim-fireplace',         {'for': 'clojure'}
 
 " Using a non-master branch
-Pack 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+Plug 'rdnetto/YCM-Generator',       {'branch': 'stable'}
 
 " Post-update hook
-Pack 'Yggdroot/LeaderF', { 'do': {-> system('./install.sh')} }
+Plug 'Yggdroot/LeaderF',            {'do': {-> system('./install.sh')}}
 
 " Sepcify commit ID, branch name or tag name to be checked out.
-Pack 'tpope/vim-sensible', { 'rev': 'v1.2' }
+Plug 'tpope/vim-sensible',          {'rev': 'v1.2'}
 
-call plugpac#end()
+call plug#end()
 ```
-Reload .vimrc and `:PackInstall` to install plugins.  
-`Pack` command just handles `for` and `on` options(i.e. lazy load, implies `'type': 'opt'`). Other options are passed to `minpac#add` directly. See [minpac][1] for more imformation.
+Reload `.vimrc`/`init.vim` and `:PlugInstall` to install plugins.
+`Plug` command just handles `for` and `on` options(i.e. lazy load, implies `'type': 'opt'`). Other options are passed to `packager#add` directly. See [packager][3] for more imformation.
 
 ## Commands
-- PackInstall: Install newly added plugins.(`minpac#update()`)
-- PackUpdate: Install or update plugins.(`minpac#update()`)
-- PackClean: Uninstall unused plugins.(`minpac#clean()`)
-- PackStatus: See plugins status.(`minpac#status()`)
-- PackDisable: Move a plugin to `minpac/opt`.(`minpac#update` would move plugin back to `minpac/start`, unless the plugin is explicitly optional. Useful for disabling a plugin temporarily)
+- `PlugInstall`: Install newly added plugins. (`packager#install()`)
+- `PlugUpdate`: Install or update plugins. (`packager#update()`)
+- `PlugClean`: Uninstall unused plugins. (`packager#clean()`)
+- `PlugStatus`: See plugins status. (`packager#status()`)
+- `PlugDisable`: Move a plugin to `packager/opt`. (`packager#update` would move plugin back to `packager/start`, unless the plugin is explicitly optional. Useful for disabling a plugin temporarily)
 
 ## Credit
-K.Takata(as the author of [minpac][1])  
-Junegunn Choi(as the author of [vim-plug][2])
+K. Takata (the author of [minpac][1])
+Junegunn Choi (the author of [vim-plug][2])
+Kristijan Husak (the author of [vim-packager][3])
+Ben Yip (the author of [plugpac][4])
 
 [1]: https://github.com/k-takata/minpac
 [2]: https://github.com/junegunn/vim-plug
-
+[3]: https://github.com/kristijanhusak/vim-packager
+[4]: https://github.com/bennyyip/plugpac.vim
 ## License
 MIT
